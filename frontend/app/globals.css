@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+.dark {
+  color-scheme: dark;
+}
+
+* {
+  border-color: theme('colors.paper.line');
+}
+.dark * {
+  border-color: theme('colors.ink.line');
+}
+
+body {
+  @apply bg-paper text-ink dark:bg-ink dark:text-paper font-body antialiased transition-colors duration-200;
+}
+
+::selection {
+  background-color: theme('colors.brand.200');
+  color: theme('colors.brand.700');
+}
+
+/* Thin, quiet scrollbars instead of the default chunky OS ones */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: theme('colors.paper.line');
+  border-radius: 999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background-color: theme('colors.ink.line');
+}
+
+/* Visible keyboard focus everywhere - accessibility floor, not optional */
+:focus-visible {
+  outline: 2px solid theme('colors.brand.500');
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
